@@ -1,0 +1,8 @@
+(()=>{const slides=[...document.querySelectorAll('.deck-slide')], stage=document.querySelector('#deck-stage'), by=id=>document.getElementById(id);let n=0;
+slides.forEach((el,i)=>{el.setAttribute('role','group');el.setAttribute('aria-label','Slide '+(i+1)+' dari '+slides.length)});
+function show(i,hash=true){n=Math.max(0,Math.min(i,slides.length-1));slides.forEach((x,j)=>x.hidden=j!==n);by('deck-count').textContent=(n+1)+' / '+slides.length;by('deck-prev').disabled=n===0;by('deck-next').disabled=n===slides.length-1;stage.scrollTop=0;window.scrollTo(0,0);if(hash)history.replaceState(null,'','#slide-'+(n+1));}
+function route(){const h=location.hash;if(h==='#lab3d')return show(slides.indexOf(by('lab3d')),false);const m=h.match(/^#slide-(\d+)$/);show(m?Number(m[1])-1:0,false)}
+by('deck-prev').onclick=()=>show(n-1);by('deck-next').onclick=()=>show(n+1);by('deck-lab').onclick=()=>show(slides.indexOf(by('lab3d')));
+document.querySelectorAll('a[href="#lab3d"]').forEach(a=>a.onclick=e=>{e.preventDefault();by('deck-lab').click()});
+const full=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen?.();by('deck-full').onclick=()=>Promise.resolve(full()).catch(()=>{});
+addEventListener('hashchange',route);addEventListener('keydown',e=>{if(e.target.closest('button,a,input,select,textarea,summary'))return;if(['ArrowRight',' ','ArrowLeft','Home','End','l','L','f','F'].includes(e.key))e.preventDefault();if(e.key==='ArrowRight'||e.key===' ')show(n+1);if(e.key==='ArrowLeft')show(n-1);if(e.key==='Home')show(0);if(e.key==='End')show(slides.length-1);if(e.key.toLowerCase()==='l')by('deck-lab').click();if(e.key.toLowerCase()==='f')by('deck-full').click()});route();})();
