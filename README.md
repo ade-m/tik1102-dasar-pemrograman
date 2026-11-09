@@ -1,3 +1,5 @@
-# TIK1102
+# TIK1102 · Dasar-Dasar Pemrograman
 
-Katalog 15 pertemuan. Materi interaktif 12–14 mengikuti topik Kelas USU dan memakai satu kasus inventaris. Jalankan `python3 uji_inventaris.py` untuk contoh pengujian.
+Materi interaktif untuk Pertemuan 1–15. Buka index.html. Gunakan panah untuk pindah slide, L untuk Lab 3D, dan F untuk layar penuh. Bila WebGL tidak tersedia, kontrol dan diagram 2D tetap dapat digunakan.
+
+Contoh Python: jalankan python3 uji_inventaris.py dari folder ini. UTS tetap melalui Kelas USU.
